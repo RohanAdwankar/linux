@@ -18,6 +18,12 @@ Git-tracked home setup for this machine.
 - `.bashrc.local`
 - `.profile`
 
+## Managed app config
+
+- `.config/nvim`
+- `.codex/skills/optimize`
+- `.codex/skills/reflect`
+
 ## Packages currently managed declaratively
 
 - `uv`

@@ -19,3 +19,24 @@ for name in .bashrc .bash_aliases .bashrc.local .profile; do
 
   ln -s "$source_path" "$target_path"
 done
+
+install_link() {
+  local source_path="$1"
+  local target_path="$2"
+
+  mkdir -p "$(dirname "$target_path")"
+
+  if [ -L "$target_path" ] && [ "$(readlink "$target_path")" = "$source_path" ]; then
+    return
+  fi
+
+  if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+    mv "$target_path" "$target_path.pre-dotfiles-backup"
+  fi
+
+  ln -s "$source_path" "$target_path"
+}
+
+install_link "$home_root/.config/nvim" "$target_home/.config/nvim"
+install_link "$home_root/.codex/skills/optimize" "$target_home/.codex/skills/optimize"
+install_link "$home_root/.codex/skills/reflect" "$target_home/.codex/skills/reflect"
