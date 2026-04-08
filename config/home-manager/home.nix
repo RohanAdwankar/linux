@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     cargo
+    neovim
     rustc
     uv
     python312
