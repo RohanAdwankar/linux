@@ -1,1 +1,6 @@
+alias vi='nvim'
+alias ls='ls -ltra'
 alias codex='codex --yolo'
+alias rg='rga -Sn'
+alias s='vi $(mktemp -p ~/scratch)'
+alias v='vi .'
