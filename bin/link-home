@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+home_root="$repo_root/home"
+target_home="${HOME}"
+
+for name in .bashrc .bash_aliases .bashrc.local .profile; do
+  source_path="$home_root/$name"
+  target_path="$target_home/$name"
+
+  if [ -L "$target_path" ] && [ "$(readlink "$target_path")" = "$source_path" ]; then
+    continue
+  fi
+
+  if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+    mv "$target_path" "$target_path.pre-dotfiles-backup"
+  fi
+
+  ln -s "$source_path" "$target_path"
+done
